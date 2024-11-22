@@ -59,7 +59,7 @@
                                             </form>
                                         </td>
                                         <td>
-                                            <button class="btn btn-primary" data-user-id="{{ $user->id }}">Courses</button>
+                                            <a class="btn btn-primary" href="{{route('customer.user_courses', $user->id )}}">Courses</a>
 
                                         </td>
                                         <td>

@@ -26,12 +26,8 @@ Route::controller(AdminController::class)->group(
 Route::controller(CustomerController::class)->group(
     function () {
         Route::get('/dashboard/customer', 'index')->name('customer.index');
-        Route::get('/dashboard/customer/create', 'create')->name('customer.create');
-        Route::post('/dashboard/customer', 'store')->name('customer.store');
-        Route::get('/dashboard/customer/{id}', 'show')->name('customer.show');
-        Route::get('/dashboard/customer/{id}/edit', 'edit')->name('customer.edit');
         Route::patch('/dashboard/customer/update/{id}', 'update')->name('customer.update');
-        Route::delete('/dashboard/customer/{id}', 'destroy')->name('customer.destroy');
+        Route::get('/dashboard/customer/user_courses/{id}', 'user_courses')->name('customer.user_courses');
     }
 )->middleware(['auth', 'verified']);
 

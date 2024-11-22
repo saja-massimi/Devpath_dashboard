@@ -28,6 +28,7 @@ class AdminController extends Controller
 
             ]);
         } else {
+            Auth::logout();
             return redirect('/');
         }
     }
