@@ -16,7 +16,7 @@ class AdminController extends Controller
         if (Auth::user()->role == 'admin') {
 
             $totalTransactionAmount = Transaction::sum('amount');
-            $totalUsers = User::where('role', 'user')->count();
+            $totalUsers = User::where('role', 'student')->count();
             $totalCourses = Courses::count();
             $totalTeachers = Teacher::count();
 

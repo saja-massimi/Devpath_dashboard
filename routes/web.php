@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +32,13 @@ Route::controller(CustomerController::class)->group(
     }
 )->middleware(['auth', 'verified']);
 
-
+Route::controller(TeacherController::class)->group(
+    function () {
+        Route::get('/dashboard/teacher', 'index')->name('teacher.index');
+        Route::patch('/dashboard/teacher/update/{id}', 'update')->name('teacher.update');
+        Route::get('/dashboard/teacher/teacher_courses/{id}', 'teacher_courses')->name('teacher.teacher_courses');
+    }
+)->middleware(['auth', 'verified']);
 
 
 Route::middleware('auth')->group(function () {

@@ -35,7 +35,7 @@
           <li><a href="{{route('dashboard')}}"><i class="ti-panel"></i><span class="nav-text">Dashboard</span></a></li>
 
           <li><a class="sidebar-sub-toggle" href="{{ route('customer.index')}}"><i class="ti-bar-chart-alt"></i> <span class="nav-text">Users</span> </a></li>
-          <li><a href="app-event-calender.html"><i class="ti-book"></i> <span class="nav-text">Teachers</span> </a></li>
+          <li><a href="{{route('teacher.index')}}"><i class="ti-book"></i> <span class="nav-text">Teachers</span> </a></li>
           <li><a href="app-email.html"><i class="ti-ruler-pencil"></i> <span class="nav-text">Courses</span> </a></li>
           <li><a href="app-widget-card.html"><i class="ti-layout-grid2-alt"></i> <span class="nav-text">Categories</span> </a></li>
           <li><a href="app-widget-card.html"><i class="ti-money"></i> <span class="nav-text">Transactions</span> </a></li>

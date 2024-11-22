@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class TeacherController extends Controller
 {
@@ -12,54 +14,46 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        //
+        $teachers = Teacher::all();
+        return view('dashboard/teachers', compact('teachers'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Teacher $teacher)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Teacher $teacher)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Teacher $teacher)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:15',
+            'experience' => 'nullable|string',
+        ]);
+
+        $teacher = Teacher::findOrFail($id);
+
+        $teacher->update($validated);
+
+        return response()->json(['success' => true]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Teacher $teacher)
+
+    public function teacher_courses($id)
     {
-        //
+
+        $courses = DB::table('courses')
+            ->join('teachers', 'courses.teacher_id', '=', 'teachers.teacher_id')
+            ->where('teachers.teacher_id', $id)
+            ->select('courses.*')
+            ->get();
+
+        $user = Teacher::findOrFail($id);
+
+
+        return view('dashboard\teacherCourses', [
+            'user' => $user,
+            'courses' => $courses,
+        ]);
     }
 }
