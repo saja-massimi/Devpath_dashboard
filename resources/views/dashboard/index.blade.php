@@ -4,12 +4,22 @@
 @include('dashboard.partials.head');
 
 <body>
-  @include('dashboard.partials.header');
+  <div id="preloader">
+    <div class="sk-three-bounce">
+      <div class="sk-child sk-bounce1"></div>
+      <div class="sk-child sk-bounce2"></div>
+      <div class="sk-child sk-bounce3"></div>
+    </div>
+  </div>
+
+
+
+
   <div id="main-wrapper">
 
     <div class="nav-header">
       <a href="{{route('dashboard')}}" class="brand-logo">
-        <img class="logo-text" src="{{ asset('dashboard_assets/images/logos/logo-devpath.png') }}" alt="logo" style="width: 200px; height: auto">
+        <img class="brand-title" src="{{ asset('dashboard_assets/images/logos/logo-devpath.png') }}" alt="logo" style="width: 500px; height: auto">
       </a>
       <div class="nav-control">
         <div class="hamburger">
@@ -17,20 +27,21 @@
         </div>
       </div>
     </div>
+    @include('dashboard.partials.header');
     <div class="quixnav">
       <div class="quixnav-scroll">
         <ul class="metismenu" id="menu">
           <li class="nav-label first">Main Menu</li>
           <li><a href="{{route('dashboard')}}"><i class="ti-panel"></i><span class="nav-text">Dashboard</span></a></li>
 
-          <li><a class="sidebar-sub-toggle" href="/"><i class="ti-bar-chart-alt"></i> Users </a></li>
-          <li><a href="app-event-calender.html"><i class="ti-book"></i> Teachers </a></li>
-          <li><a href="app-email.html"><i class="ti-ruler-pencil"></i> Courses </a></li>
-          <li><a href="app-widget-card.html"><i class="ti-layout-grid2-alt"></i> Categories</a></li>
-          <li><a href="app-widget-card.html"><i class="ti-money"></i>Transactions</a></li>
+          <li><a class="sidebar-sub-toggle" href="{{ route('customer.index')}}"><i class="ti-bar-chart-alt"></i> <span class="nav-text">Users</span> </a></li>
+          <li><a href="app-event-calender.html"><i class="ti-book"></i> <span class="nav-text">Teachers</span> </a></li>
+          <li><a href="app-email.html"><i class="ti-ruler-pencil"></i> <span class="nav-text">Courses</span> </a></li>
+          <li><a href="app-widget-card.html"><i class="ti-layout-grid2-alt"></i> <span class="nav-text">Categories</span> </a></li>
+          <li><a href="app-widget-card.html"><i class="ti-money"></i> <span class="nav-text">Transactions</span> </a></li>
           <li>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              <i class="ti-close"></i> Logout</a>
+              <i class="ti-close"></i><span class="nav-text"> Logout</span></a>
             <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
               @csrf
             </form>
@@ -44,30 +55,38 @@
     @yield('content')
 
 
-    <div class="row">
-      <div class="col-lg-12">
-        <div class="footer">
-          <p>{{ date('Y') }} © Devpath Admin Board</p>
-        </div>
-      </div>
+
+    <div class="footer">
+      <p>{{ date('Y') }} © Devpath Admin Board</p>
     </div>
 
 
-
-    <script src="{{asset('dashboard_assets')}}/vendor/global/global.min.js"></script>
-    <script src="{{asset('dashboard_assets')}}/js/quixnav-init.js"></script>
-    <script src="{{asset('dashboard_assets')}}/js/custom.min.js"></script>
-
-    <script src="{{asset('dashboard_assets')}}/vendor/chartist/js/chartist.min.js"></script>
-
-    <script src="{{asset('dashboard_assets')}}/vendor/moment/moment.min.js"></script>
-    <script src="{{asset('dashboard_assets')}}/vendor/pg-calendar/js/pignose.calendar.min.js"></script>
+  </div>
 
 
-    <script src="{{asset('dashboard_assets')}}/js/dashboard/dashboard-2.js"></script>
 
 
-    <!-- scripit init-->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <script src="{{asset('dashboard_assets')}}/vendor/global/global.min.js"></script>
+  <script src="{{asset('dashboard_assets')}}/js/quixnav-init.js"></script>
+  <script src="{{asset('dashboard_assets')}}/js/custom.min.js"></script>
+
+  <script src="{{asset('dashboard_assets')}}/vendor/chartist/js/chartist.min.js"></script>
+
+  <script src="{{asset('dashboard_assets')}}/vendor/moment/moment.min.js"></script>
+  <script src="{{asset('dashboard_assets')}}/vendor/pg-calendar/js/pignose.calendar.min.js"></script>
+
+
+  <script src="{{asset('dashboard_assets')}}/js/dashboard/dashboard-2.js"></script>
+
+  <script src="{{asset('dashboard_assets')}}/vendor/sweetalert2/dist/sweetalert2.min.js"></script>
+  <script src="{{asset('dashboard_assets')}}/js/plugins-init/sweetalert.init.js"></script>
+
+  <!-- Datatable -->
+  <script src="{{asset('dashboard_assets')}}/vendor/datatables/js/jquery.dataTables.min.js"></script>
+  <script src="{{asset('dashboard_assets')}}/js/plugins-init/datatables.init.js"></script>
+  <!-- scripit init-->
 </body>
 
 </html>

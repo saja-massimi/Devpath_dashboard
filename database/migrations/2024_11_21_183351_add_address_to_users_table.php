@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('teachers', function (Blueprint $table) {
-            $table->id('teacher_id');
-            $table->foreignId('course_id')->references('course_id')->on('courses')->onDelete('cascade');
-            $table->string('experience');
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('address')->nullable();
         });
     }
 
@@ -24,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -35,7 +35,7 @@
                         </div>
                         <div class="profile-info">
                             <div class="row justify-content-center">
-                                <div class="col-xl-8">
+                                <div class="col-xl-12">
                                     <div class="row">
                                         <div class="col-xl-4 col-sm-4 border-right-1 prf-col">
                                             <div class="profile-name">
@@ -67,47 +67,33 @@
                                     <div id="profile-settings">
                                         <div class="pt-3">
                                             <div class="settings-form">
-                                                <form>
+                                                <form method="POST" action="{{ route('profile.update') }}">
+                                                    @csrf
+                                                    @method('PATCH')
                                                     <div class="form-row">
                                                         <div class="form-group col-md-6">
                                                             <label>Email</label>
-                                                            <input type="email" placeholder="Email" class="form-control">
+                                                            <input type="email" id="email" name="email" disabled placeholder="Email" class="form-control" value="{{ $user->email }}">
                                                         </div>
+
                                                         <div class="form-group col-md-6">
-                                                            <label>Password</label>
-                                                            <input type="password" placeholder="Password" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Address</label>
-                                                        <input type="text" placeholder="1234 Main St" class="form-control">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>Address 2</label>
-                                                        <input type="text" placeholder="Apartment, studio, or floor" class="form-control">
-                                                    </div>
-                                                    <div class="form-row">
-                                                        <div class="form-group col-md-6">
-                                                            <label>City</label>
-                                                            <input type="text" class="form-control">
-                                                        </div>
-                                                        <div class="form-group col-md-4">
-                                                            <label>State</label>
-                                                            <select class="form-control" id="inputState">
-                                                                <option selected="">Choose...</option>
-                                                                <option>Option 1</option>
-                                                                <option>Option 2</option>
-                                                                <option>Option 3</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="form-group col-md-2">
-                                                            <label>Zip</label>
-                                                            <input type="text" class="form-control">
+                                                            <label>Enter Old Password</label>
+                                                            <input type="password" name="old_pass" id="old_pass" placeholder="Old Password" class="form-control">
+
+                                                            <label>New Password</label>
+                                                            <input type="password" name="new_pass" id="new_pass" placeholder="New Password" class="form-control">
                                                         </div>
                                                     </div>
 
-                                                    <button class="btn btn-primary" type="submit">Update</button>
+                                                    <div class="form-group">
+                                                        <label>Address</label>
+                                                        <input type="text" id="address" name="address" disabled placeholder="1234 Main St" class="form-control" value="{{ $user->address }}">
+                                                    </div>
+
+                                                    <button type="button" id="edit-btn" class="btn btn-primary">Edit</button>
+                                                    <button type="submit" id="update-btn" class="btn btn-primary" disabled>Update</button>
                                                 </form>
+
                                             </div>
                                         </div>
                                     </div>
@@ -120,8 +106,38 @@
         </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('success'))
+<input type='hidden' id='text' value='{{   session('success') }}' />
+
+<script>
+    text = document.getElementById('text').value;
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: text,
+        confirmButtonText: 'OK'
+    });
+</script>
+@endif
+
+<script>
+    document.getElementById('edit-btn').addEventListener('click', function() {
+        document.getElementById('email').disabled = false;
+        document.getElementById('address').disabled = false;
+        document.getElementById('old_pass').disabled = false;
+        document.getElementById('new_pass').disabled = false;
+
+        document.getElementById('update-btn').disabled = false;
+
+        this.style.display = 'none';
 
 
+
+    });
+</script>
 
 
 @endsection
