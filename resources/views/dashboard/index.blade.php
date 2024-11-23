@@ -38,7 +38,7 @@
           <li><a href="{{route('teacher.index')}}"><i class="ti-book"></i> <span class="nav-text">Teachers</span> </a></li>
           <li><a href="{{route('courses.index')}}"><i class="ti-ruler-pencil"></i> <span class="nav-text">Courses</span> </a></li>
           <li><a href="{{route('categories.index')}}"><i class="ti-layout-grid2-alt"></i> <span class="nav-text">Categories</span> </a></li>
-          <li><a href="app-widget-card.html"><i class="ti-money"></i> <span class="nav-text">Transactions</span> </a></li>
+          <li><a href="{{route('transactions.index')}}"><i class="ti-money"></i> <span class="nav-text">Transactions</span> </a></li>
           <li>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               <i class="ti-close"></i><span class="nav-text"> Logout</span></a>

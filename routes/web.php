@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,6 +60,17 @@ Route::controller(CategoriesController::class)->group(
         Route::post('/dashboard/categories', 'store')->name('categories.store');
         Route::patch('/dashboard/categories/update/{id}', 'update')->name('categories.update');
         Route::delete('/dashboard/categories/{id}', 'destroy')->name('categories.destroy');
+    }
+)->middleware(['auth', 'verified']);
+
+Route::controller(TransactionController::class)->group(
+    function () {
+        Route::get('/dashboard/transactions', 'index')->name('transactions.index');
+        Route::get('/dashboard/transactions/edit/{id}', 'edit')->name('transactions.edit');
+        Route::patch('/dashboard/transactions/update/{id}', 'update')->name('transactions.update');
+        Route::get('/dashboard/transactions/create', 'create')->name('transactions.create');
+        Route::post('/dashboard/transactions', 'store')->name('transactions.store');
+        Route::delete('/dashboard/transactions/{id}', 'destroy')->name('transactions.destroy');
     }
 )->middleware(['auth', 'verified']);
 
