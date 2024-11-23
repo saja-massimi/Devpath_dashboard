@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,19 +43,24 @@ Route::controller(TeacherController::class)->group(
 )->middleware(['auth', 'verified']);
 
 Route::controller(CoursesController::class)->group(
-function(){
+    function () {
 
-    Route::get('/dashboard/courses', 'index')->name('courses.index');
-    Route::get('/dashboard/courses/create', 'create')->name('courses.create');
-    Route::post('/dashboard/courses/store', 'store')->name('courses.store');
-    Route::get('/dashboard/courses/edit/{id}', 'edit')->name('courses.edit');
-    Route::patch('/dashboard/courses/update/{id}', 'update')->name('courses.update');
-    Route::delete('/dashboard/courses/{id}', 'destroy')->name('courses.destroy');
-    Route::get('/dashboard/courses/show/{id}', 'show')->name('courses.show');
-
-}
+        Route::get('/dashboard/courses', 'index')->name('courses.index');
+        Route::get('/dashboard/courses/edit/{id}', 'edit')->name('courses.edit');
+        Route::patch('/dashboard/courses/update/{id}', 'update')->name('courses.update');
+        Route::delete('/dashboard/courses/{id}', 'destroy')->name('courses.destroy');
+    }
 )->middleware(['auth', 'verified']);
 
+Route::controller(CategoriesController::class)->group(
+    function () {
+        Route::get('/dashboard/categories', 'index')->name('categories.index');
+        Route::get('/dashboard/createCategory', 'create')->name('categories.create');
+        Route::post('/dashboard/categories', 'store')->name('categories.store');
+        Route::patch('/dashboard/categories/update/{id}', 'update')->name('categories.update');
+        Route::delete('/dashboard/categories/{id}', 'destroy')->name('categories.destroy');
+    }
+)->middleware(['auth', 'verified']);
 
 Route::middleware('auth')->group(function () {
     Route::get('dashboard/profile', [ProfileController::class, 'view'])->name('profile.view');
