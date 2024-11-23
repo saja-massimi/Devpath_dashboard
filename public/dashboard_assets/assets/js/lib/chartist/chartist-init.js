@@ -163,19 +163,20 @@ new Chartist.Line('.ct-sm-line-chart', {
 
 // line chart with area
 
-new Chartist.Line('.ct-area-ln-chart', {
-  labels: [1, 2, 3, 4, 5, 6, 7, 8],
-  series: [
-    [5, 9, 7, 8, 5, 3, 5, 4]
-  ]
-}, {
-  low: 0,
 
-  plugins: [
-    Chartist.plugins.tooltip()
-  ],
-  showArea: true
+new Chartist.Line('.ct-area-ln-chart', {
+    labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], 
+    series: [1,2,3,4,5,6,7] 
+}, {
+    low: 0,
+    high: 2000,
+    fullWidth: true,
+    plugins: [
+        Chartist.plugins.tooltip()
+    ],
+    showArea: true
 });
+
 
 // ct-polar-chart
 new Chartist.Line('#ct-polar-chart', {

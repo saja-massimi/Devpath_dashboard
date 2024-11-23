@@ -89,6 +89,12 @@
   <script src="{{asset('dashboard_assets')}}/vendor/datatables/js/jquery.dataTables.min.js"></script>
   <script src="{{asset('dashboard_assets')}}/js/plugins-init/datatables.init.js"></script>
   <!-- scripit init-->
+
+
+
+
+
+  <script src="{{asset('dashboard_assets')}}/assets/js/scripts.js"></script>
 </body>
 
 </html>

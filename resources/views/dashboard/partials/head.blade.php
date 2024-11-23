@@ -15,5 +15,7 @@
   <link href="{{asset('dashboard_assets')}}/vendor/chartist/css/chartist.min.css" rel="stylesheet">
   <link href="{{asset('dashboard_assets')}}/css/style.css" rel="stylesheet">
   <link href="{{asset('dashboard_assets')}}/vendor/datatables/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="{{asset('dashboard_assets')}}/assets/css/lib/chartist/chartist.min.css" rel="stylesheet">
+
 
 </head>
