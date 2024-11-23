@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\CoursesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,20 @@ Route::controller(TeacherController::class)->group(
         Route::patch('/dashboard/teacher/update/{id}', 'update')->name('teacher.update');
         Route::get('/dashboard/teacher/teacher_courses/{id}', 'teacher_courses')->name('teacher.teacher_courses');
     }
+)->middleware(['auth', 'verified']);
+
+Route::controller(CoursesController::class)->group(
+function(){
+
+    Route::get('/dashboard/courses', 'index')->name('courses.index');
+    Route::get('/dashboard/courses/create', 'create')->name('courses.create');
+    Route::post('/dashboard/courses/store', 'store')->name('courses.store');
+    Route::get('/dashboard/courses/edit/{id}', 'edit')->name('courses.edit');
+    Route::patch('/dashboard/courses/update/{id}', 'update')->name('courses.update');
+    Route::delete('/dashboard/courses/{id}', 'destroy')->name('courses.destroy');
+    Route::get('/dashboard/courses/show/{id}', 'show')->name('courses.show');
+
+}
 )->middleware(['auth', 'verified']);
 
 
