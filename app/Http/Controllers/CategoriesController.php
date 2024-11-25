@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoriesController extends Controller
 {
@@ -12,6 +13,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()) {
+            return redirect('/');
+        }
         $categories = Categories::all();
         return view('dashboard/categories', compact('categories'));
     }

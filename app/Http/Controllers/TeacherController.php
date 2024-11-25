@@ -6,6 +6,7 @@ use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TeacherController extends Controller
 {
@@ -19,7 +20,7 @@ class TeacherController extends Controller
     }
 
 
-    /**
+    /**e
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id)

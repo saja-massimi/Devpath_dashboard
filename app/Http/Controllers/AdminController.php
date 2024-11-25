@@ -13,6 +13,11 @@ class AdminController extends Controller
 {
     public function index()
     {
+
+        if (!Auth::user()) {
+            return redirect('/');
+        }
+
         if (Auth::user()->role == 'admin') {
             //get the total transaction each day
 

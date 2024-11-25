@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,16 @@ Route::controller(CustomerController::class)->group(
         Route::get('/dashboard/customer/user_courses/{id}', 'user_courses')->name('customer.user_courses');
     }
 )->middleware(['auth', 'verified']);
+
+Route::controller(ContactusController::class)->group(
+    function () {
+        Route::get('/dashboard/contactUs', 'index')->name('contactus.index');
+        Route::get('/dashboard/contactUs/edit/{id}', 'edit')->name('contactus.edit');
+        Route::patch('/dashboard/contactUs/update/{id}', 'update')->name('contactus.update');
+        Route::delete('/dashboard/contactUs/{id}', 'destroy')->name('contactus.destroy');
+    }
+)->middleware(['auth', 'verified']);
+
 
 Route::controller(TeacherController::class)->group(
     function () {

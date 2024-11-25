@@ -15,6 +15,10 @@ class ProfileController extends Controller
 {
     public function view()
     {
+
+        if (!Auth::user()) {
+            return redirect('/');
+        }
         $user = User::find(Auth::id());
 
         return view('dashboard.profile', compact('user'));

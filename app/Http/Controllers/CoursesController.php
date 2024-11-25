@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Courses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 
 class CoursesController extends Controller
 {
@@ -13,6 +14,9 @@ class CoursesController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()) {
+            return redirect('/');
+        }
         $courses = Courses::all();
         return view('dashboard/courses', compact('courses'));
     }

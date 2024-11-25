@@ -22,11 +22,11 @@
               <i class="mdi mdi-account"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="{{route('profile.view')}}" class="dropdown-item">
+              <a href="{{ route('profile.view') }}" class="dropdown-item">
                 <i class="icon-user"></i>
                 <span class="ml-2">Profile </span>
               </a>
-              <a href="/" class="dropdown-item">
+              <a href="" class="dropdown-item">
                 <i class="icon-envelope-open"></i>
                 <span class="ml-2">Inbox </span>
               </a>

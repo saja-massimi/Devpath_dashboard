@@ -9,6 +9,8 @@ use App\Models\Course;
 use App\Models\Courses;
 use Illuminate\Support\Facades\DB;
 use Laracsv\Export;
+use Illuminate\Support\Facades\Auth;
+
 
 class TransactionController extends Controller
 {
@@ -17,11 +19,14 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()) {
+            return redirect('/');
+        }
         $transactions = DB::table('transactions')
             ->join('courses', 'transactions.course_id', '=', 'courses.course_id')
             ->join('users', 'transactions.user_id', '=', 'users.id')
             ->select('transactions.*', 'courses.course_title as course_name', 'users.name as user_name')
-            ->whereNull('transactions.deleted_at') // Exclude soft-deleted records
+            ->whereNull('transactions.deleted_at')
             ->get();
 
         return view('dashboard.transactions', ['transactions' => $transactions]);
