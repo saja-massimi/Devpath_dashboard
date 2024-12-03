@@ -71,6 +71,8 @@
                                             <form method="POST" action="{{ route('teacher.update', $teacher->teacher_id) }}" id="experiene-form-{{ $teacher->teacher_id }}">
                                                 @csrf
                                                 @method('PATCH')
+
+                                                
                                                 <textarea name="experiene" class="form-control" disabled>{{ $teacher->experiene }}</textarea>
                                             </form>
                                         </td>

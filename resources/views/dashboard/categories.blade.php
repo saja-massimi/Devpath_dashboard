@@ -65,8 +65,10 @@
                                         <td>
                                             <button class="btn btn-primary edit-btn" data-user-id="{{  $category->category_id }}">Edit</button>
 
-                                            <button class="btn btn-success update-btn d-none" data-user-id="{{  $category->category_id }}">Update</button>
-                                            <button class="btn btn-danger cancel-btn d-none" data-user-id="{{ $category->category_id }}">Cancel</button>
+                                            <button class="btn btn-primary update-btn d-none" data-user-id="{{  $category->category_id }}">Update</button>
+                                            <button class="btn btn-danger cancel-btn d-none" data-user-id="{{ $category->category_id }}">
+                                                <span class="ti-close"></span>
+                                            </button>
                                         </td>
 
                                         <td>

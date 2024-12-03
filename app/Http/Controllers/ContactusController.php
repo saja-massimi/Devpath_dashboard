@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Contactus;
 
 class ContactusController extends Controller
 {
@@ -12,8 +13,9 @@ class ContactusController extends Controller
         if (!Auth::user()) {
             return redirect('/');
         }
-
-        return view('dashboard/contactus');
+        $contactus = Contactus::all();
+        // dd($contactus);
+        return view('dashboard/contactUs', compact('contactus'));
     }
 
     public function edit($id)
@@ -28,6 +30,9 @@ class ContactusController extends Controller
 
     public function destroy($id)
     {
+        $contactus = Contactus::find($id);
+        $contactus->delete();
+
         return redirect()->route('contactus.index');
     }
 }

@@ -10,11 +10,8 @@ use App\Http\Controllers\ContactusController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
+
+/*************************** Admin Routes ***********************************/
 
 Route::get('/', function () {
     return view('auth.login');
@@ -26,7 +23,6 @@ Route::controller(AdminController::class)->group(
         Route::get('/dashboard', 'index')->name('dashboard');
     }
 )->middleware(['auth', 'verified']);
-
 
 Route::controller(CustomerController::class)->group(
     function () {
@@ -45,22 +41,11 @@ Route::controller(ContactusController::class)->group(
     }
 )->middleware(['auth', 'verified']);
 
-
 Route::controller(TeacherController::class)->group(
     function () {
         Route::get('/dashboard/teacher', 'index')->name('teacher.index');
         Route::patch('/dashboard/teacher/update/{id}', 'update')->name('teacher.update');
         Route::get('/dashboard/teacher/teacher_courses/{id}', 'teacher_courses')->name('teacher.teacher_courses');
-    }
-)->middleware(['auth', 'verified']);
-
-Route::controller(CoursesController::class)->group(
-    function () {
-
-        Route::get('/dashboard/courses', 'index')->name('courses.index');
-        Route::get('/dashboard/courses/edit/{id}', 'edit')->name('courses.edit');
-        Route::patch('/dashboard/courses/update/{id}', 'update')->name('courses.update');
-        Route::delete('/dashboard/courses/{id}', 'destroy')->name('courses.destroy');
     }
 )->middleware(['auth', 'verified']);
 
@@ -91,6 +76,32 @@ Route::middleware('auth')->group(function () {
     Route::patch('dashboard/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::middleware(['auth', 'authorize'])->group(
+    function () {
+
+        Route::get('/dashboard/courses', [CoursesController::class, 'index'])->name('courses.index');
+        Route::get('/dashboard/courses/edit/{id}', [CoursesController::class, 'edit'])->name('courses.edit');
+        Route::patch('/dashboard/courses/update/{id}', [CoursesController::class, 'update'])->name('courses.update');
+        Route::delete('/dashboard/courses/{id}', [CoursesController::class, 'destroy'])->name('courses.destroy');
+    }
+);
+
+/*************************** User Routes ***********************************/
+
+Route::middleware('auth')->group(function () {
+    Route::get('dashboard/profile', [ProfileController::class, 'view'])->name('profile.view');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('dashboard/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+
+
+
+
+
+
 
 
 

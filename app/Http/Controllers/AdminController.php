@@ -19,16 +19,13 @@ class AdminController extends Controller
         }
 
         if (Auth::user()->role == 'admin') {
-            //get the total transaction each day
 
             $totalRevenue = Transaction::selectRaw('DATE_FORMAT(created_at, "%m") as month, SUM(amount) as total')
                 ->groupBy('month')
                 ->orderBy('month')
                 ->get();
 
-            $months = $totalRevenue->pluck('month')->toArray();
-
-            // Map month numbers to month names
+            $months = $totalRevenue->pluck('month')->toArray();            
             $monthNames = [
                 '01' => 'Jan',
                 '02' => 'Feb',
@@ -58,15 +55,13 @@ class AdminController extends Controller
             $totalCourses = Courses::count();
             $totalTeachers = Teacher::count();
 
-            // Get all courses and their student count
+          
             $courses = Courses::all();
 
-            // Count the number of students for each course
             $studentCounts = $courses->map(function ($course) {
-                return $course->users()->count(); // Count the related students
+                return $course->users()->count(); 
             })->toArray();
 
-            // Optionally, get the names of the courses
             $courseNames = $courses->pluck('course_title')->toArray();;
 
 

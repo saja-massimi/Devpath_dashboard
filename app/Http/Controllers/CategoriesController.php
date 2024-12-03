@@ -13,9 +13,6 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        if (!Auth::user()) {
-            return redirect('/');
-        }
         $categories = Categories::all();
         return view('dashboard/categories', compact('categories'));
     }

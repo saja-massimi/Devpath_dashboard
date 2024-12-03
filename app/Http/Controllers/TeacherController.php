@@ -15,6 +15,9 @@ class TeacherController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()) {
+            return redirect('/');
+        }
         $teachers = Teacher::all();
         return view('dashboard/teachers', compact('teachers'));
     }

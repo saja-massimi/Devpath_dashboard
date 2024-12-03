@@ -14,9 +14,8 @@ class CoursesController extends Controller
      */
     public function index()
     {
-        if (!Auth::user()) {
-            return redirect('/');
-        }
+
+
         $courses = Courses::all();
         return view('dashboard/courses', compact('courses'));
     }

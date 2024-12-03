@@ -26,7 +26,7 @@
                 <i class="icon-user"></i>
                 <span class="ml-2">Profile </span>
               </a>
-              <a href="" class="dropdown-item">
+              <a href="{{route('contactus.index')}}" class="dropdown-item">
                 <i class="icon-envelope-open"></i>
                 <span class="ml-2">Inbox </span>
               </a>

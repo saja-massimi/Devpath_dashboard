@@ -11,7 +11,6 @@
                     <h4>Hi {{Auth::user()->name}}, welcome back!</h4>
                     <p>Today is {{ \Carbon\Carbon::now()->format('l, F j, Y') }}</p>
 
-                    <p class="mb-0">DevPath dashboard</p>
                 </div>
             </div>
             <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
@@ -77,31 +76,27 @@
             </div>
         </div>
 
-        <div class="row">
-
-            <div class="col-lg-6">
-                <div class="card">
+        <div class="row h-100" style="height: 100vh;">
+            <div class="col-lg-6 d-flex align-items-stretch">
+                <div class="card w-100">
                     <div class="card-block">
                         <h4 class="card-title">Revenue Growth</h4>
-                        <canvas id="lineChart" data-months="{{ json_encode($months) }}" data-revenues="{{ json_encode($revenues) }}"></canvas>
-
+                        <canvas id="lineChart" data-months="{{ json_encode($months) }}" data-revenues="{{ json_encode($revenues) }}"
+                            height="200"></canvas>
                     </div>
                 </div>
             </div>
 
-
-            <div class="col-lg-6">
-                <div class="card">
+            <div class="col-lg-6 d-flex align-items-stretch">
+                <div class="card w-100">
                     <div class="card-block">
                         <h4 class="card-title">Course Enrollment</h4>
-                        <canvas id="pieChart"
-                            data-course-names="{{ json_encode($courseNames) }}"
-                            data-student-counts="{{ json_encode($studentCounts) }}">
-                        </canvas>
+                        <canvas id="pieChart" data-course-names="{{ json_encode($courseNames) }}" data-student-counts="{{ json_encode($studentCounts) }}" width="300" height="300"></canvas>
                     </div>
                 </div>
             </div>
         </div>
+
 
     </div>
 
@@ -161,14 +156,12 @@
 </script>
 
 <script>
-    // Get the canvas element
     const pieChartCanvas = document.getElementById('pieChart');
 
-    // Retrieve the data stored in the data-* attributes
+
     const courseNames = JSON.parse(pieChartCanvas.getAttribute('data-course-names'));
     const studentCounts = JSON.parse(pieChartCanvas.getAttribute('data-student-counts'));
 
-    // Display the Pie Chart
     const ctx2 = pieChartCanvas.getContext('2d');
     const pieChart = new Chart(ctx2, {
         type: 'pie',

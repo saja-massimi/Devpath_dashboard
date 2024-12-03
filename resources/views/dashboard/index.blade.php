@@ -14,12 +14,12 @@
 
 
 
-
+  
   <div id="main-wrapper">
 
     <div class="nav-header">
       <a href="{{route('dashboard')}}" class="brand-logo">
-        <img class="brand-title" src="{{ asset('dashboard_assets/images/logos/logo-devpath.png') }}" alt="logo" style="width: 500px; height: auto">
+        <img class="brand-title" src="{{ asset('dashboard_assets/images/logos/logo-devpath.png') }}" alt="logo" >
       </a>
       <div class="nav-control">
         <div class="hamburger">
@@ -41,7 +41,7 @@
           <li><a href="{{route('transactions.index')}}"><i class="ti-money"></i> <span class="nav-text">Transactions</span> </a></li>
           <li>
             <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              <i class="ti-close"></i><span class="nav-text"> Logout</span></a>
+              <i class="ti-close"></i><span class="nav-text">Logout</span></a>
             <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
               @csrf
             </form>

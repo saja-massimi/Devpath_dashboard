@@ -10,4 +10,7 @@ class ContactUs extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
+
+    protected $primaryKey = 'contactUs_id';
 }

@@ -51,7 +51,7 @@
                                         <td>{{ $course->course_title }}</td>
                                         <td>{{ $course->course_description }}</td>
                                         <td>{{ $course->course_price}}</td>
-                                        <td>{{ $course->course_description}}</td>
+                                        <td>{{ $course->course_duration}} hours</td>
                                         <td><img src="{{ asset('dashboard_assets/images/product/'.$course->course_image) }}" alt="image" style="width: 100px; height: 100px;"></td>
                                         <td> {{$course->diffculty_leve}} </td>
 
